@@ -1,5 +1,7 @@
 package com.xyw.result;
 
+import com.sun.tools.javac.jvm.Code;
+
 /**
  * Created with IDEA
  * author:RicardoXu
@@ -17,6 +19,10 @@ public class CodeMsg {
 
 
     //登录模块 5002XX
+    public static CodeMsg MOBILE_NOT_EXIST = new CodeMsg(500214,"手机号不存在");
+
+
+    public static CodeMsg PASSWORD_ERROR = new CodeMsg(500215,"密码错误");
 
     //商品模块 5003XX
 

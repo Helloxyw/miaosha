@@ -23,7 +23,7 @@ public class Result<T> {
      *
      * 第一个<T>声明此方法持有一个类型T,也可以理解为声明此方法为范型方法
      */
-    public <T> Result<T> success(T data){
+    public static  <T> Result<T> success(T data){
         return new Result<T>(data);
     }
 
@@ -34,7 +34,7 @@ public class Result<T> {
      * @param <T>
      * @return
      */
-    public <T> Result<T> error(CodeMsg codeMsg){
+    public static  <T> Result<T> error(CodeMsg codeMsg){
         return new Result<T>(codeMsg);
     }
 
