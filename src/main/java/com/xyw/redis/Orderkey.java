@@ -10,4 +10,10 @@ public class Orderkey extends BasePrefix {
     public Orderkey(int expireSeconds, String prefix) {
         super(expireSeconds, prefix);
     }
+
+    public Orderkey(String prefix) {
+        super(prefix);
+    }
+
+    public static Orderkey getMiaoshaOrderByUidGid = new Orderkey("mouq");
 }

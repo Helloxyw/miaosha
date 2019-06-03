@@ -1,9 +1,10 @@
 package com.xyw.dao;
 
-import com.xyw.domain.MiaoshaUser;
+import com.xyw.domain.MiaoshaGoods;
 import com.xyw.vo.GoodsVo;
 import org.apache.ibatis.annotations.Param;
 import org.apache.ibatis.annotations.Select;
+import org.apache.ibatis.annotations.Update;
 
 import java.util.List;
 
@@ -21,5 +22,10 @@ public interface GoodsDao {
     @Select("")
     GoodsVo getGoodsVoByGoodsId(@Param("goodsId") long goodsId);
 
-//    int reduceStock(MiaoshaUser)
+
+    @Update("update miaosha_goods set stock_count = stock_count - 1 where goods_id = #{goodsId} and stock_count > 0")
+     int reduceStock(MiaoshaGoods g);
+
+    @Update("update miaosha_goods set stock_count = #{stockCount} where goods_id = #{goodsId}")
+     int resetStock(MiaoshaGoods g);
 }
