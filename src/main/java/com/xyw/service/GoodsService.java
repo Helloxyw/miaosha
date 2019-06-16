@@ -40,7 +40,7 @@ public class GoodsService {
     }
 
     /**
-     *
+     *  减少库存
      * @param goods
      * @return
      */
