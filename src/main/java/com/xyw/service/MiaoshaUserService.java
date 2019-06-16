@@ -25,7 +25,7 @@ import javax.servlet.http.HttpServletResponse;
 @Service
 public class MiaoshaUserService {
 
-    private static final String COOKIE_NAME_TOKEN = "token";
+    public static final String COOKIE_NAME_TOKEN = "token";
 
     @Autowired
     private RedisService redisService;
