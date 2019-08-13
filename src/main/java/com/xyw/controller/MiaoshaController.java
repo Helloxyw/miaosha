@@ -6,7 +6,7 @@ import com.xyw.domain.MiaoshaUser;
 import com.xyw.rabbitmq.MQSender;
 import com.xyw.rabbitmq.MiaoshaMessage;
 import com.xyw.redis.GoodsKey;
-import com.xyw.redis.MiaoshaKey;
+import com.xyw.redis.Orderkey;
 import com.xyw.redis.RedisService;
 import com.xyw.result.CodeMsg;
 import com.xyw.result.Result;
@@ -69,6 +69,22 @@ public class MiaoshaController {
             redisService.set(GoodsKey.getMiaoshaGoodsStock, "" + goods.getId(), goods.getStockCount());
             localOverMap.put(goods.getId(), false);
         }
+    }
+
+
+    @RequestMapping(value = "/reset", method = RequestMethod.GET)
+    @ResponseBody
+    public Result<Boolean> reset(Model model){
+        List<GoodsVo> goodsList = goodsService.listGoodsVo();
+        for (GoodsVo goods : goodsList){
+            goods.setStockCount(10);
+            redisService.set(GoodsKey.getMiaoshaGoodsStock,""+ goods.getId(),10);
+            localOverMap.put(goods.getId(),false);
+        }
+
+        //todo 重置redis
+//        redisService.delete(Orderkey.getMiaoshaOrderByUidGid);
+        return  Result.success(true);
     }
 
 

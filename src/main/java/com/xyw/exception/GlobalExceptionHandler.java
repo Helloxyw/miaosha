@@ -17,7 +17,7 @@ import java.util.List;
  * Date:2019/5/21
  * Time:23:06
  */
-@ControllerAdvice   //拦截异常并统一处理
+@ControllerAdvice   //拦截controller层异常并统一处理
 @ResponseBody
 public class GlobalExceptionHandler {
 

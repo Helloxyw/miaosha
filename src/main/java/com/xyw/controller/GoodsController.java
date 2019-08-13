@@ -85,6 +85,7 @@ public class GoodsController {
      * @param goodsId
      * @return
      */
+    @RequestMapping(value = "/to_detail2/{goodsId}",produces = "text/html")
     public String detail2(HttpServletRequest request, HttpServletResponse response, Model model,
                           MiaoshaUser user, @PathVariable("goodsId") long goodsId) {
         model.addAttribute("user", user);
@@ -120,15 +121,18 @@ public class GoodsController {
         model.addAttribute("remainSeconds", remainSeconds);
 
 
+        //ThymeleafViewResolver是Spring MVC中ViewResolver的一个实现类。
+        // 像其他的视图解析器一样，它会接受一个逻辑视图名称，并将其解析为视图
         SpringWebContext ctx = new SpringWebContext(request, response,
                 request.getServletContext(), request.getLocale(), model.asMap(), applicationContext);
         html = thymeleafViewResolver.getTemplateEngine().process("goods_detail", ctx);
 
-
+        //页面缓存
         if (!StringUtils.isEmpty(html)) {
             redisService.set(GoodsKey.getGoodsDetail, "" + goodsId, html);
         }
 
         return html;
     }
+
 }
